@@ -2,6 +2,7 @@ Una nueva cadena de cafés sofisticados nos pidió hacer un sistema para manejar
 
 
 En nuestra base de conocimiento hay pedidos de clientes y se conoce la composición de las bebidas. También se sabe cuáles componentes son alcohólicos.
+
 ```
 pedido(franco,explosiva).
 pedido(lucas,dulceDeLecheLatte).
