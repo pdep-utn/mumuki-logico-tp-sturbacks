@@ -1,6 +1,8 @@
 Una nueva cadena de cafés sofisticados nos pidió hacer un sistema para manejar pedidos y bebidas en el paradigma lógico.
 
+
 En nuestra base de conocimiento hay pedidos de clientes y se conoce la composición de las bebidas. También se sabe cuáles componentes son alcohólicos.
+```
 pedido(franco,explosiva).
 pedido(lucas,dulceDeLecheLatte).
 pedido(lucas,irishCream).
@@ -18,3 +20,4 @@ tieneAlcohol(baileys).
 tieneAlcohol(tiaMaria).
 tieneAlcohol(vodka).
 tieneAlcohol(ron).
+```
