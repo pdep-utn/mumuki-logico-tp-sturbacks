@@ -34,7 +34,44 @@ tieneAlcohol(vodka).
 tieneAlcohol(ron).
 
 
-% 1)
-ingrediente(Bebida, Ingrediente) :- 
-	bebida(Bebida, Ingredientes),
-	member(Ingrediente, Ingredientes).
+% Mockeo el 1
+ingrediente(dulceDeLecheLatte,base(cafe, 100)).
+ingrediente(dulceDeLecheLatte,leche(10, 50)).
+ingrediente(frappuccinoFrutilla,base(helado, 80)).
+ingrediente(frappuccinoFrutilla,jarabe(frutilla)).
+ingrediente(frappuccinoFrutilla,jarabe(dulceDeLeche)).
+ingrediente(frappuccinoFrutilla,leche(2, 60)).
+ingrediente(irishCream,base(cafe, 90)).
+ingrediente(irishCream,jarabe(baileys)).
+ingrediente(irishCream,leche(3, 50)).
+ingrediente(explosiva,base(ron, 90)).
+ingrediente(explosiva,base(vodka, 100)).
+ingrediente(explosiva,jarabe(frutilla)).
+ingrediente(extrema,base(cafe, 100)).
+ingrediente(extrema,base(helado, 80)).
+ingrediente(extrema,base(ron, 90)).
+ingrediente(extrema,leche(10, 10)).
+ingrediente(extrema,jarabe(chocolate)).
+ingrediente(light,base(cafe, 5)).
+ingrediente(light,jarabe(frutilla)).
+ingrediente(chocoLight,leche(10, 1)).
+ingrediente(chocoLight,jarabe(chocolate)).
+ingrediente(cafecito,base(cafe, 10)).
+ingrediente(conTodo,base(cafe, 5)).
+ingrediente(conTodo,jarabe(frutilla)).
+ingrediente(conTodo,base(helado, 80)).
+ingrediente(conTodo,base(mouse, 90)).
+ingrediente(conTodo,leche(10, 10)).
+ingrediente(conTodo,jarabe(chocolate)).
+ingrediente(conTodo,base(helado, 80)).
+ingrediente(conTodo,base(mouse, 90)).
+ingrediente(conTodo,leche(10, 10)).
+ingrediente(conTodo,jarabe(chocolate)).
+ingrediente(conTodo,base(helado, 80)).
+ingrediente(conTodo,base(mouse, 90)).
+ingrediente(conTodo,leche(10, 10)).
+ingrediente(conTodo,jarabe(chocolate)).
+ingrediente(milkshake,base(helado, 80)).
+ingrediente(milkshake,leche(5, 10)).
+ingrediente(cafeConLeche,base(cafe, 5)).
+ingrediente(cafeConLeche,leche(5, 10)).

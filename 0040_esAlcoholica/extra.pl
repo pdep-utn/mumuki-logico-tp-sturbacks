@@ -35,39 +35,61 @@ tieneAlcohol(ron).
 
 
 
-% 1)
-ingrediente(Bebida, Ingrediente) :- 
-	bebida(Bebida, Ingredientes),
-	member(Ingrediente, Ingredientes).
+% Mockeo el 1
+ingrediente(dulceDeLecheLatte,base(cafe, 100)).
+ingrediente(dulceDeLecheLatte,leche(10, 50)).
+ingrediente(frappuccinoFrutilla,base(helado, 80)).
+ingrediente(frappuccinoFrutilla,jarabe(frutilla)).
+ingrediente(frappuccinoFrutilla,jarabe(dulceDeLeche)).
+ingrediente(frappuccinoFrutilla,leche(2, 60)).
+ingrediente(irishCream,base(cafe, 90)).
+ingrediente(irishCream,jarabe(baileys)).
+ingrediente(irishCream,leche(3, 50)).
+ingrediente(explosiva,base(ron, 90)).
+ingrediente(explosiva,base(vodka, 100)).
+ingrediente(explosiva,jarabe(frutilla)).
+ingrediente(extrema,base(cafe, 100)).
+ingrediente(extrema,base(helado, 80)).
+ingrediente(extrema,base(ron, 90)).
+ingrediente(extrema,leche(10, 10)).
+ingrediente(extrema,jarabe(chocolate)).
+ingrediente(light,base(cafe, 5)).
+ingrediente(light,jarabe(frutilla)).
+ingrediente(chocoLight,leche(10, 1)).
+ingrediente(chocoLight,jarabe(chocolate)).
+ingrediente(cafecito,base(cafe, 10)).
+ingrediente(conTodo,base(cafe, 5)).
+ingrediente(conTodo,jarabe(frutilla)).
+ingrediente(conTodo,base(helado, 80)).
+ingrediente(conTodo,base(mouse, 90)).
+ingrediente(conTodo,leche(10, 10)).
+ingrediente(conTodo,jarabe(chocolate)).
+ingrediente(conTodo,base(helado, 80)).
+ingrediente(conTodo,base(mouse, 90)).
+ingrediente(conTodo,leche(10, 10)).
+ingrediente(conTodo,jarabe(chocolate)).
+ingrediente(conTodo,base(helado, 80)).
+ingrediente(conTodo,base(mouse, 90)).
+ingrediente(conTodo,leche(10, 10)).
+ingrediente(conTodo,jarabe(chocolate)).
+ingrediente(milkshake,base(helado, 80)).
+ingrediente(milkshake,leche(5, 10)).
+ingrediente(cafeConLeche,base(cafe, 5)).
+ingrediente(cafeConLeche,leche(5, 10)).
 
-% 2)
-caloriasTotales(Bebida, CaloriasTotales) :-
-	bebida(Bebida, _),
-	findall(Calorias, 
-		(ingrediente(Bebida, Ingrediente), calorias(Ingrediente, Calorias)),
-		ListaCalorias),
-	sumlist(ListaCalorias, CaloriasTotales).
-	
-calorias(base(Base, Cantidad), Calorias) :- 
-	Base \= cafe,
-	Calorias is Cantidad * 10.
-calorias(base(cafe, Cantidad), Calorias) :- Calorias is Cantidad * 2.
-calorias(jarabe(_), 10).
-calorias(leche(CantGrasa, CantLeche), Calorias) :- Calorias is CantGrasa * CantLeche.
+% Mockeo el 2
+caloriasTotales(dulceDeLecheLatte,700).
+caloriasTotales(frappuccinoFrutilla,940).
+caloriasTotales(irishCream,340).
+caloriasTotales(explosiva,1910).
+caloriasTotales(extrema,2010).
+caloriasTotales(light,20).
+caloriasTotales(chocoLight,20).
+caloriasTotales(cafecito,20).
+caloriasTotales(conTodo,5450).
+caloriasTotales(milkshake,850).
+caloriasTotales(cafeConLeche,60).
 
-% 3)
-bebidaLight(Bebida) :-
-	esLiviana(Bebida),
-	tieneIngredientesLivianos(Bebida).
-	
-esLiviana(Bebida) :-
-	caloriasTotales(Bebida, Calorias),
-	Calorias < 80.
-
-tieneIngredientesLivianos(Bebida) :- 
-	forall(ingrediente(Bebida, Ingrediente), esLiviano(Ingrediente)).
-	
-esLiviano(Ingrediente) :- 
-	calorias(Ingrediente, Calorias),
-	Calorias =< 15.
-	
+% Mockeo el 3
+bebidaLight(light).
+bebidaLight(chocoLight).

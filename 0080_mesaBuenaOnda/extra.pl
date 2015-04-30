@@ -35,97 +35,97 @@ tieneAlcohol(ron).
 
 
 
-% 1)
-ingrediente(Bebida, Ingrediente) :- 
-	bebida(Bebida, Ingredientes),
-	member(Ingrediente, Ingredientes).
 
-% 2)
-caloriasTotales(Bebida, CaloriasTotales) :-
-	bebida(Bebida, _),
-	findall(Calorias, 
-		(ingrediente(Bebida, Ingrediente), calorias(Ingrediente, Calorias)),
-		ListaCalorias),
-	sumlist(ListaCalorias, CaloriasTotales).
-	
-calorias(base(Base, Cantidad), Calorias) :- 
-	Base \= cafe,
-	Calorias is Cantidad * 10.
-calorias(base(cafe, Cantidad), Calorias) :- Calorias is Cantidad * 2.
-calorias(jarabe(_), 10).
-calorias(leche(CantGrasa, CantLeche), Calorias) :- Calorias is CantGrasa * CantLeche.
+% Mockeo el 1
+ingrediente(dulceDeLecheLatte,base(cafe, 100)).
+ingrediente(dulceDeLecheLatte,leche(10, 50)).
+ingrediente(frappuccinoFrutilla,base(helado, 80)).
+ingrediente(frappuccinoFrutilla,jarabe(frutilla)).
+ingrediente(frappuccinoFrutilla,jarabe(dulceDeLeche)).
+ingrediente(frappuccinoFrutilla,leche(2, 60)).
+ingrediente(irishCream,base(cafe, 90)).
+ingrediente(irishCream,jarabe(baileys)).
+ingrediente(irishCream,leche(3, 50)).
+ingrediente(explosiva,base(ron, 90)).
+ingrediente(explosiva,base(vodka, 100)).
+ingrediente(explosiva,jarabe(frutilla)).
+ingrediente(extrema,base(cafe, 100)).
+ingrediente(extrema,base(helado, 80)).
+ingrediente(extrema,base(ron, 90)).
+ingrediente(extrema,leche(10, 10)).
+ingrediente(extrema,jarabe(chocolate)).
+ingrediente(light,base(cafe, 5)).
+ingrediente(light,jarabe(frutilla)).
+ingrediente(chocoLight,leche(10, 1)).
+ingrediente(chocoLight,jarabe(chocolate)).
+ingrediente(cafecito,base(cafe, 10)).
+ingrediente(conTodo,base(cafe, 5)).
+ingrediente(conTodo,jarabe(frutilla)).
+ingrediente(conTodo,base(helado, 80)).
+ingrediente(conTodo,base(mouse, 90)).
+ingrediente(conTodo,leche(10, 10)).
+ingrediente(conTodo,jarabe(chocolate)).
+ingrediente(conTodo,base(helado, 80)).
+ingrediente(conTodo,base(mouse, 90)).
+ingrediente(conTodo,leche(10, 10)).
+ingrediente(conTodo,jarabe(chocolate)).
+ingrediente(conTodo,base(helado, 80)).
+ingrediente(conTodo,base(mouse, 90)).
+ingrediente(conTodo,leche(10, 10)).
+ingrediente(conTodo,jarabe(chocolate)).
+ingrediente(milkshake,base(helado, 80)).
+ingrediente(milkshake,leche(5, 10)).
+ingrediente(cafeConLeche,base(cafe, 5)).
+ingrediente(cafeConLeche,leche(5, 10)).
 
-% 3)
-bebidaLight(Bebida) :-
-	esLiviana(Bebida),
-	tieneIngredientesLivianos(Bebida).
-	
-esLiviana(Bebida) :-
-	caloriasTotales(Bebida, Calorias),
-	Calorias < 80.
+% Mockeo el 2
+caloriasTotales(dulceDeLecheLatte,700).
+caloriasTotales(frappuccinoFrutilla,940).
+caloriasTotales(irishCream,340).
+caloriasTotales(explosiva,1910).
+caloriasTotales(extrema,2010).
+caloriasTotales(light,20).
+caloriasTotales(chocoLight,20).
+caloriasTotales(cafecito,20).
+caloriasTotales(conTodo,5450).
+caloriasTotales(milkshake,850).
+caloriasTotales(cafeConLeche,60).
 
-tieneIngredientesLivianos(Bebida) :- 
-	forall(ingrediente(Bebida, Ingrediente), esLiviano(Ingrediente)).
-	
-esLiviano(Ingrediente) :- 
-	calorias(Ingrediente, Calorias),
-	Calorias =< 15.
+% Mockeo el 3
+bebidaLight(light).
+bebidaLight(chocoLight).
 
-% 4)
-esAlcoholica(Bebida) :- 
-	ingrediente(Bebida, Ingrediente),
-	esAlcoholico(Ingrediente).
+% Mockeo el 4
+esAlcoholica(irishCream).
+esAlcoholica(explosiva).
+esAlcoholica(extrema).
 
-esAlcoholico(base(Base,_)) :- tieneAlcohol(Base).
-esAlcoholico(jarabe(Jarabe)) :- tieneAlcohol(Jarabe).
+% Mockeo el 5
+tieneProblemitas(gus).
+tieneProblemitas(alf).
+tieneProblemitas(franco).
+	
+% Mockeo el 6
+buscaAprobacionDe(vero, franco).
+buscaAprobacionDe(vero, nico).
+buscaAprobacionDe(gus, franco).
 
-% 5)
-tieneProblemitas(Cliente) :-
-	esCliente(Cliente),
-	bebidaLight(BebidaLight),
-	not(pedido(Cliente, BebidaLight)),
-	esProblematico(Cliente).
-	
-esProblematico(Cliente) :- 
-	pedido(Cliente, Bebida),
-	poseeMuchosIngredientes(Bebida).
-
-esProblematico(Cliente) :- 
-	forall(esAlcoholica(Bebida), pedido(Cliente, Bebida)).
-
-poseeMuchosIngredientes(Bebida) :-
-	bebida(Bebida, Ingredientes),
-	length(Ingredientes, Cantidad),
-	Cantidad > 10.
-	
-esCliente(Cliente) :-
-	pedido(Cliente, _).
-	
-% 6)
-buscaAprobacionDe(Interesado, Persona) :-
-	pidieronAlgunaBebidaLightOAlcoholica(Interesado, Persona),
-	Interesado \= Persona,
-	forall(pedido(Interesado, Bebida), pedido(Persona, Bebida)).
-	
-pidieronAlgunaBebidaLightOAlcoholica(Interesado, Persona) :-
-	pedido(Interesado, Bebida), 
-	pedido(Persona, Bebida),
-	esLightOAlcoholica(Bebida).
-	
-esLightOAlcoholica(Bebida) :-
-	bebidaLight(Bebida).
-	
-esLightOAlcoholica(Bebida) :-
-	esAlcoholica(Bebida).
-	
-% 7)
-seLlevanBien(UnaPersona, OtraPersona) :-
-	esCliente(UnaPersona),
-	esCliente(OtraPersona),
-	UnaPersona \= OtraPersona,
-	not(buscanAprobacionDeMismaPersona(UnaPersona, OtraPersona)).
-
-buscanAprobacionDeMismaPersona(UnaPersona, OtraPersona) :-
-	buscaAprobacionDe(UnaPersona, Alguien),
-	buscaAprobacionDe(OtraPersona, Alguien).
-	
+% Mockeo el 7
+seLlevanBien(vero, alf).
+seLlevanBien(vero, franco).
+seLlevanBien(vero, nico).
+seLlevanBien(gus, alf).
+seLlevanBien(gus, franco).
+seLlevanBien(gus, nico).
+seLlevanBien(alf, vero).
+seLlevanBien(alf, gus).
+seLlevanBien(alf, franco).
+seLlevanBien(alf, nico).
+seLlevanBien(franco, vero).
+seLlevanBien(franco, gus).
+seLlevanBien(franco, alf).
+seLlevanBien(franco, nico).
+seLlevanBien(nico, vero).
+seLlevanBien(nico, gus).
+seLlevanBien(nico, alf).
+seLlevanBien(nico, franco).
