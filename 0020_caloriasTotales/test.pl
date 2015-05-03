@@ -12,11 +12,11 @@ test(calorias_de_leche_es_cant_leche_por_cant_grasa) :-
 
 test(caloriasTotales_es_la_suma_de_las_calorias_de_los_ingredientes) :-
         caloriasTotales(extrema, 2010).
-		
-test(caloriaTotales_es_inversible_respecto_a_las_calorias, 
+
+test(caloriaTotales_es_inversible_respecto_a_las_calorias,
 	true(Calorias == 2010)) :-
         caloriasTotales(extrema, Calorias).
-		
-test(caloriasTotales_es_inversible_respecto_a_la_bebida, 
+
+test(caloriasTotales_es_inversible_respecto_a_la_bebida,
 	[true(Bebida == extrema), nondet]) :-
         caloriasTotales(Bebida, 2010).

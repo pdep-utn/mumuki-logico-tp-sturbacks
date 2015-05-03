@@ -1,4 +1,4 @@
-`ingrediente/2`: Relacionar una bebida con cada uno de sus ingredientes. Ejemplo:
+Desarrollar el predicado `ingrediente/2`. Este relaciona una bebida con cada uno de sus ingredientes. Ejemplo:
 
 ```
 ?- ingrediente(dulceDeLecheLatte, Ingrediente).
