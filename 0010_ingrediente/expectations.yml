@@ -1,0 +1,5 @@
+expectations:
+- binding: ingrediente
+  inspection: HasBinding
+- binding: ingrediente
+  inspection: HasUsage:bebida
